@@ -2,6 +2,7 @@ var url_path = window.location.pathname;
 
 console.log("File name: " + getFileName());
 console.log("Is a PDF: " + isPDF());
+isDOCX();
 
 // Returns true if user is viewing a 
 // file to download, false otherwise
@@ -23,6 +24,16 @@ function getFileName() {
 function isPDF() {
   var pdfs = document.getElementsByClassName("d2l-fileviewer-pdf");
   if (pdfs.length == 1) {
+    return true;
+  }
+  return false;
+}
+
+// Returns true if viewing .docx file
+// I really couldn't think of a better way to do this
+function isDOCX() {
+  var body = document.getElementsByTagName("body")[0].innerHTML;
+  if (body.indexOf(".docx") != -1) {
     return true;
   }
   return false;
