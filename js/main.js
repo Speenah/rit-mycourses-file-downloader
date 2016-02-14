@@ -6,6 +6,7 @@ console.log("Is a PDF: " + isPDF());
 console.log("Is a DOCX: " + isDOCX());
 console.log("Is a TXT: " + isTXT());
 
+
 // Returns true if user is viewing a 
 // file to download, false otherwise
 function isViewingContent(url_path) {
@@ -16,10 +17,40 @@ function isViewingContent(url_path) {
   return false;
 }
 
+////////////////////
+// FILE FUNCTIONS //
+////////////////////
+
 // Return name of file, no extension
 function getFileName() {
   var nametag = document.getElementsByClassName("vui-heading-1")[0];
-  return nametag.innerText;
+  var no_preview = isNoPreviewFile();
+  if (no_preview) {
+    return no_preview;
+  }
+  
+  var name = nametag.innerText;
+  var ext = determineExt();
+  
+  return name + ext;
+}
+
+// Returns extension as string
+// Ex: .pdf
+// Or empty string if it's an other file
+function determineExt() {
+  var ext;
+  
+  if (isPDF()) {
+    ext = ".pdf";
+  } else if (isDOCX()) {
+    ext = ".docx";
+  } else if (isTXT()) {
+    ext = ".txt";
+  } else {
+    ext = "";
+  }
+  return ext;
 }
 
 // Returns true if viewing PDF
@@ -48,4 +79,13 @@ function isTXT() {
     return true;
   }
   return false;
+}
+
+// Returns file name if it is a no preview file
+// Returns null otherwise
+function isNoPreviewFile() {
+  var div = document.getElementsByClassName("d2l-textblock d2l-textblock-strong d2l-left")[0];
+  if (div) {
+    return div.innerText;
+  } return null;
 }
