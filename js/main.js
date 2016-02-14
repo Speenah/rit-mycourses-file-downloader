@@ -5,7 +5,7 @@ console.log("File name: " + getFileName());
 console.log("Is a PDF: " + isPDF());
 console.log("Is a DOCX: " + isDOCX());
 console.log("Is a TXT: " + isTXT());
-
+console.log("Course ID Number: " + getCourseIdNumber());
 
 // Returns true if user is viewing a 
 // file to download, false otherwise
@@ -88,4 +88,9 @@ function isNoPreviewFile() {
   if (div) {
     return div.innerText;
   } return null;
+}
+
+// Returns the mycourses course id number
+function getCourseIdNumber() {
+  return url_path.split("/")[4];
 }
