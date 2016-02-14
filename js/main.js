@@ -11,6 +11,7 @@ console.log("Download link: " + getDownloadLink());
 
 if (isViewingContent(url_path)) {
   addDropboxScriptTag();
+  addDropboxButton();
 }
 
 // Returns true if user is viewing a 
