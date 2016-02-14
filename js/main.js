@@ -6,6 +6,8 @@ console.log("Is a PDF: " + isPDF());
 console.log("Is a DOCX: " + isDOCX());
 console.log("Is a TXT: " + isTXT());
 console.log("Course ID Number: " + getCourseIdNumber());
+console.log("Course Label: " + getCourseLabel());
+console.log("Download link: " + getDownloadLink());
 
 // Returns true if user is viewing a 
 // file to download, false otherwise
@@ -20,6 +22,14 @@ function isViewingContent(url_path) {
 ////////////////////
 // FILE FUNCTIONS //
 ////////////////////
+
+// Returns the download link
+function getDownloadLink() {
+  var prefix = "https://mycourses.rit.edu/content/enforced2/";
+  var link = prefix + getCourseIdNumber() + "-" + getCourseLabel() + "/" + 
+  getFileName().replace(/ /g, "%20");
+  return link;
+}
 
 // Return name of file, no extension
 function getFileName() {
@@ -93,4 +103,12 @@ function isNoPreviewFile() {
 // Returns the mycourses course id number
 function getCourseIdNumber() {
   return url_path.split("/")[4];
+}
+
+// Returns the mycourses course label
+function getCourseLabel() {
+  var regex = /\(([^)]+)\)/;
+  var title = document.getElementsByClassName("d2l-navbar-title")[0].innerText;
+  var label = regex.exec(title);
+  return label[1];
 }
