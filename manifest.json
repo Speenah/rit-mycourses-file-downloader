@@ -14,6 +14,7 @@
     "js": [
       "js/file-ops.js", 
       "js/jquery-2.2.0.min.js", 
+      "js/dropins.js",
       "js/injector.js",
       "js/main.js"
     ]
