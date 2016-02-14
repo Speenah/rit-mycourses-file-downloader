@@ -6,5 +6,11 @@
 
   "permissions": [
     "https://mycourses.rit.edu/"
-  ]
+  ],
+  
+  "content_scripts": [{
+    "matches": ["https://mycourses.rit.edu/*"],
+    "css": ["css/style.css"],
+    "js": ["js/button_injector.js"]
+  }]
 }
