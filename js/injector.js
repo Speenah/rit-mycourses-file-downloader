@@ -17,11 +17,7 @@ function addDropboxButton() {
       console.log(errorMessage);
     }
   };
-  var temp = "https://mycourses.rit.edu/d2l/le/content/" +
-         "585427" +
-         "/topics/files/download/" +
-         "3815682" +
-         "/DirectFileTopicDownload";
-  var button = Dropbox.createSaveButton(temp, getFileName(), options);
+  
+  var button = Dropbox.createSaveButton(getDownloadLink(), getFileName(), options);
   $("div[class^=d2l_1] > div.d2l-left").append(button);
 }
