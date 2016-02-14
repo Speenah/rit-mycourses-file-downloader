@@ -1,8 +1,10 @@
 var url_path = window.location.pathname;
 
+console.log("Is viewing content: " + isViewingContent(url_path));
 console.log("File name: " + getFileName());
 console.log("Is a PDF: " + isPDF());
-isDOCX();
+console.log("Is a DOCX: " + isDOCX());
+console.log("Is a TXT: " + isTXT());
 
 // Returns true if user is viewing a 
 // file to download, false otherwise
@@ -34,6 +36,15 @@ function isPDF() {
 function isDOCX() {
   var body = document.getElementsByTagName("body")[0].innerHTML;
   if (body.indexOf(".docx") != -1) {
+    return true;
+  }
+  return false;
+}
+
+// Returns true if viewing a .txt file
+function isTXT() {
+  var txt = document.getElementsByClassName("d2l-fileviewer-text");
+  if (txt.length == 1) {
     return true;
   }
   return false;
