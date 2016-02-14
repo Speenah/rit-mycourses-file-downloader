@@ -9,6 +9,10 @@ console.log("Course ID Number: " + getCourseIdNumber());
 console.log("Course Label: " + getCourseLabel());
 console.log("Download link: " + getDownloadLink());
 
+if (isViewingContent(url_path)) {
+  addDropboxScriptTag();
+}
+
 // Returns true if user is viewing a 
 // file to download, false otherwise
 function isViewingContent(url_path) {
