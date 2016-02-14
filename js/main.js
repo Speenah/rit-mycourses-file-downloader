@@ -14,6 +14,6 @@ function isViewingContent(url_path) {
 
 // Return name of file, no extension
 function getFileName() {
-  var nametag = document.getElementsByClassName('vui-heading-1').first();
+  var nametag = document.getElementsByClassName('vui-heading-1')[0];
   return nametag.innerText;
 }
