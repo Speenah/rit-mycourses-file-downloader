@@ -11,6 +11,6 @@
   "content_scripts": [{
     "matches": ["https://mycourses.rit.edu/*"],
     "css": ["css/style.css"],
-    "js": ["js/file-ops.js", "js/main.js"]
+    "js": ["js/file-ops.js", "js/jquery-2.2.0.min.js", "js/main.js"]
   }]
 }
