@@ -6,6 +6,7 @@
 
   "permissions": [
     "https://mycourses.rit.edu/",
+    "http://mycourses.rit.edu/",
     "cookies"
   ],
   
