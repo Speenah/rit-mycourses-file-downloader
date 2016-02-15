@@ -26,7 +26,7 @@ function addDriveButton(cookies) {
   
   var drive_div = document.createElement("div");
   
-  $(drive_div).addClass("g-savetodrive vui-button d2l-button space-out");
+  $(drive_div).addClass("g-savetodrive");
   $(drive_div).attr({
     "role": "button",
     "data-src": getDownloadLink(cookies),
@@ -34,5 +34,12 @@ function addDriveButton(cookies) {
     "data-sitename": "RIT MyCourses"
   });
   
-  $("div[class^=d2l_1] > div.d2l-left").append(drive_div);
+  
+  // g-savetodrive removes all other classes
+  var drive_style = document.createElement("span");
+  $(drive_style).addClass("space-out");
+  
+  $(drive_style).append(drive_div);
+  
+  $("div[class^=d2l_1] > div.d2l-left").append(drive_style);
 }
