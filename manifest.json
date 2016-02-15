@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "MyCourses File Saver",
   "description": "Add buttons to save documents on MyCourses to Google Drive and Dropbox",
-  "version": "0.0",
+  "version": "1.0",
 
   "permissions": [
     "https://mycourses.rit.edu/",
