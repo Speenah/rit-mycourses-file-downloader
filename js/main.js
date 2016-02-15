@@ -7,6 +7,7 @@ if (isViewingContent(url_path)) {
 function getCookies() {
   chrome.runtime.sendMessage({want: "cookies"}, function(response) {
     console.log(response.cookies);
+    addDriveButton(response.cookies);
     addDropboxButton(response.cookies);
   });
 }
