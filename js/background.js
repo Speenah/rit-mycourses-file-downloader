@@ -1,8 +1,13 @@
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");
-    if (request.call == "hello")
-      sendResponse({response: "hi"});
+    console.log(request);
+    if (request.want == "cookies") {
+      chrome.cookies.getAll({}, function(cookieList) {
+        console.log(cookieList);
+        console.log("Length: " + cookieList.length);
+        sendResponse({cookies: cookieList});
+      });
+    }
+    return true;
   });
+  

@@ -18,8 +18,8 @@ if (isViewingContent(url_path)) {
 }
 
 function sendTestMessage() {
-  chrome.runtime.sendMessage({call: "hello"}, function(response) {
-    console.log(response.response);
+  chrome.runtime.sendMessage({want: "cookies"}, function(response) {
+    console.log(response.cookies);
   });
 }
 
