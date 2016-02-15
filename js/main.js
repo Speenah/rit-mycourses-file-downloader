@@ -14,10 +14,10 @@ console.log("Download link: " + getDownloadLink());
 if (isViewingContent(url_path)) {
   //addDropboxScriptTag();
   //addDropboxButton();
-  sendTestMessage();
+  getCookies();
 }
 
-function sendTestMessage() {
+function getCookies() {
   chrome.runtime.sendMessage({want: "cookies"}, function(response) {
     console.log(response.cookies);
   });
