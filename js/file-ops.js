@@ -3,10 +3,16 @@
 ////////////////////
 
 // Returns the download link
-function getDownloadLink() {
+function getDownloadLink(cookies) {
   var prefix = "https://mycourses.rit.edu/content/enforced2/";
+  
+  var cookie_suffix = "?";
+  // d2lSecureSessionVal must come first
+  cookie_suffix += "d2lSecureSessionVal=" + cookies["d2lSecureSessionVal"] +
+    "&" + "d2lSessionVal=" + cookies["d2lSessionVal"];
+  
   var link = prefix + getCourseIdNumber() + "-" + getCourseLabel() + "/" + 
-  getFileName().replace(/ /g, "%20");
+  getFileName().replace(/ /g, "%20") + cookie_suffix;
   return link;
 }
 
