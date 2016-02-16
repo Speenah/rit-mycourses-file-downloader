@@ -6,7 +6,7 @@ An extension for Google Chrome that adds buttons to save files directly to Googl
 # Installation
 There are three ways you can install Chrome extensions:
 
-1. Install from [Chrome Webstore](https://superduperlink.com)
+1. Install from [Chrome Webstore](https://chrome.google.com/webstore/detail/mycourses-file-saver/hdifocaiopaiepgdibaplbhnodnidnao)
 2. Manually install rit-mycourses-file-downloader.crx
 3. Clone and load unpacked directory
 
