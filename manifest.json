@@ -10,6 +10,8 @@
     "cookies"
   ],
   
+  "icons": { "128": "icon.png" },
+  
   "content_scripts": [{
     "matches": ["https://mycourses.rit.edu/*"],
     "css": ["css/style.css"],
