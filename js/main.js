@@ -1,6 +1,7 @@
 var url_path = window.location.pathname;
 
 if (isViewingContent(url_path)) {
+  console.log(isTXT());
   getCookies();
 }
 

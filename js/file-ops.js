@@ -42,6 +42,8 @@ function determineExt() {
     ext = ".docx";
   } else if (isTXT()) {
     ext = ".txt";
+  } else if (isHTML()) {
+    ext = ".html";
   } else {
     ext = "";
   }
@@ -71,7 +73,19 @@ function isDOCX() {
 function isTXT() {
   var txt = document.getElementsByClassName("d2l-fileviewer-text");
   if (txt.length == 1) {
-    return true;
+    if (txt[0].getAttribute("data-location").indexOf(".txt") != -1) {
+      return true;
+    } return false;
+  }
+  return false;
+}
+
+function isHTML() {
+  var html = document.getElementsByClassName("d2l-fileviewer-text");
+  if (html.length == 1) {
+    if (html[0].getAttribute("data-location").indexOf(".html") != -1) {
+      return true;
+    } return false;
   }
   return false;
 }
