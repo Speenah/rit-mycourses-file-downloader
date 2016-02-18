@@ -164,8 +164,9 @@ function getCourseIdNumber() {
 
 // Returns the mycourses course label
 function getCourseLabel() {
-  var regex = /\(([^)]+)\)/;
-  var title = document.getElementsByClassName("d2l-navbar-title")[0].innerText;
+  var regex = /([A-Z]{4}\d{4,5}\.\d{4})/;
+  var title = document.getElementsByTagName("body")[0].innerText;
   var label = regex.exec(title);
-  return label[1];
+  console.log("Course Label: " + label);
+  return label[0];
 }
