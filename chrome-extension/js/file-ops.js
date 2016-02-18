@@ -2,20 +2,29 @@
 // FILE FUNCTIONS //
 ////////////////////
 
-// Returns the download link
-function getDownloadLink(cookies) {
+// Generates a download link (should work most of the time)
+function generateDownloadLink(cookies) {
+  console.log("Attempting to generate download link");
+  
   var prefix = "https://mycourses.rit.edu/content/enforced2/";
   
-  var cookie_suffix = "?";
-  // d2lSecureSessionVal must come first
-  cookie_suffix += "d2lSecureSessionVal=" + cookies["d2lSecureSessionVal"] +
+  // make sure d2lSecureSession is first
+  var cookie_suffix = "?d2lSecureSessionVal=" + cookies["d2lSecureSessionVal"] +
     "&" + "d2lSessionVal=" + cookies["d2lSessionVal"];
   
+  // not sure why this is a parameter but including it anyway
   course_id_suffix = "&ou=" + getCourseIdNumber();
   
-  var link = prefix + getCourseIdNumber() + "-" + getCourseLabel() + "/" + 
-  getFileName().replace(/ /g, "%20") + cookie_suffix + course_id_suffix;
-  return link;
+  var link = prefix + 
+             getCourseIdNumber() + "-" + 
+             getCourseLabel() + "/" + 
+             getFileName().replace(/ /g, "%20") + 
+             cookie_suffix + 
+             course_id_suffix;
+  
+  console.log("Generated link: " + link);
+  
+  return link; 
 }
 
 // Return name of file, no extension
