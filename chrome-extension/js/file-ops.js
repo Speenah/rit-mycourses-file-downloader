@@ -2,6 +2,45 @@
 // FILE FUNCTIONS //
 ////////////////////
 
+function getDownloadLink(cookies) {
+  var prefix = "https://mycourses.rit.edu";
+  var viewer = document.getElementsByClassName("d2l-fileviewer")[0];
+  
+  if (viewer) {
+    console.log("Trying to get download link directly");
+    var divs = viewer.getElementsByTagName("div");
+    var fileviewer = null;
+    
+    for (var i = 0; i < divs.length; i++) {
+      if (divs[i].hasAttribute("data-location")) {
+        fileviewer = divs[i];
+        break;
+      }
+    }
+    
+    if (!fileviewer) {
+      console.log("No direct link - must be be a Microsoft document");
+      return generateDownloadLink(cookies);
+    }
+    
+    console.log("Found direct link");
+    
+    var path = fileviewer.getAttribute("data-location");
+    var path_part = path.split("?");
+    
+    var link = prefix + path_part[0] +
+               "?d2lSecureSessionVal=" + 
+               cookies["d2lSecureSessionVal"] + // SecureSession must be first
+               "&" + path_part[1]; // incluces d2lSessionVal and ou
+    
+    console.log("Direct link: " + link);
+    
+    return link;
+  }
+
+}
+
+
 // Generates a download link (should work most of the time)
 function generateDownloadLink(cookies) {
   console.log("Attempting to generate download link");
@@ -27,7 +66,7 @@ function generateDownloadLink(cookies) {
   return link; 
 }
 
-// Return name of file, no extension
+// Return name of file
 function getFileName() {
   var nametag = document.getElementsByClassName("vui-heading-1")[0];
   var no_preview = isNoPreviewFile();
