@@ -50,6 +50,10 @@ function determineExt() {
   return ext;
 }
 
+/*****************************************
+ * TODO: Use regex instead of so many is...()
+ *****************************************/
+
 // Returns true if viewing PDF
 function isPDF() {
   var pdfs = document.getElementsByClassName("d2l-fileviewer-pdf");
