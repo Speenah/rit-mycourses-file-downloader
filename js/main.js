@@ -6,7 +6,7 @@ if (isViewingContent(url_path)) {
 
 function getCookies() {
   chrome.runtime.sendMessage({want: "cookies"}, function(response) {
-    console.log("Cookie values: " + response.cookies);
+    console.log(response.cookies);
     console.log("Download URL: " + getDownloadLink(response.cookies));
     console.log("File name: " + getFileName());
     console.log("Extension (check js comments): " + determineExt());

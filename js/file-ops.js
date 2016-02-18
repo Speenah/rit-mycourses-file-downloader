@@ -11,8 +11,10 @@ function getDownloadLink(cookies) {
   cookie_suffix += "d2lSecureSessionVal=" + cookies["d2lSecureSessionVal"] +
     "&" + "d2lSessionVal=" + cookies["d2lSessionVal"];
   
+  course_id_suffix = "&ou=" + getCourseIdNumber();
+  
   var link = prefix + getCourseIdNumber() + "-" + getCourseLabel() + "/" + 
-  getFileName().replace(/ /g, "%20") + cookie_suffix;
+  getFileName().replace(/ /g, "%20") + cookie_suffix + course_id_suffix;
   return link;
 }
 
@@ -101,7 +103,9 @@ function isNoPreviewFile() {
   if (div) {
     return div.innerText;
   } 
-  console.error("Could not get file name!");
+  if (determineExt() === "") {
+    console.error("Could not get file name!");
+  }
   return null;
 }
 
