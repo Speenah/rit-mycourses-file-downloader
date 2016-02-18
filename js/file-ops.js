@@ -96,7 +96,9 @@ function isNoPreviewFile() {
   var div = document.getElementsByClassName("d2l-textblock d2l-textblock-strong d2l-left")[0];
   if (div) {
     return div.innerText;
-  } return null;
+  } 
+  console.error("Could not get file name!");
+  return null;
 }
 
 // Returns the mycourses course id number

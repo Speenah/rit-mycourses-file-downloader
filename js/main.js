@@ -1,13 +1,17 @@
 var url_path = window.location.pathname;
 
 if (isViewingContent(url_path)) {
-  console.log(isTXT());
   getCookies();
 }
 
 function getCookies() {
   chrome.runtime.sendMessage({want: "cookies"}, function(response) {
-    console.log(response.cookies);
+    console.log("Cookie values: " + response.cookies);
+    console.log("Download URL: " + getDownloadUrl(response.cookies));
+    console.log("File name: " + getFileName());
+    console.log("Extension (check js comments): " + determineExt());
+    console.log("Course ID: " + getCourseIdNumber());
+    console.log("Course Label: " + getCourseLabel());
     addDriveButton(response.cookies);
     addDropboxButton(response.cookies);
   });
