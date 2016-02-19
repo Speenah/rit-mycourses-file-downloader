@@ -73,35 +73,44 @@ function generateDownloadLink(cookies) {
 // Return name of file
 function getFileName() {
   var nametag = document.getElementsByClassName("vui-heading-1")[0];
-  var no_preview = isNoPreviewFile();
-  if (no_preview) {
-    return no_preview;
-  }
   
   var name = nametag.innerText;
   var ext = determineExt();
+  if (ext) {
+    console.log("Filename: " + name + ext);
+    return name + ext;
+  }
+
+  var no_preview = isNoPreviewFile();
+  if (no_preview) {
+    return isNoPreviewFile();
+  }
   
-  return name + ext;
+  console.error("File name not found!");
 }
 
 // Returns extension as string
 // Ex: .pdf
 // Or empty string if it's an other file
 function determineExt() {
-  var ext;
+  console.log("Determining file extension");
+
+  // check for PDF
+  var pdfs = document.getElementsByClassName("d2l-fileviewer-pdf");
+  if (pdfs) return ".pdf";
   
-  if (isPDF()) {
-    ext = ".pdf";
-  } else if (isDOCX()) {
-    ext = ".docx";
-  } else if (isTXT()) {
-    ext = ".txt";
-  } else if (isHTML()) {
-    ext = ".html";
-  } else {
-    ext = "";
+  // check for text docs
+  var text = document.getElementsByClassName("d2l-fileviewer-text");
+  if (text) {
+    data = text.getAttribute("data-location");
+    var regex = /(\.\w{3,4})\?/;
+    return regex.exec(data)[1];
   }
-  return ext;
+  
+  var body = document.getElementsByTagName("body")[0];
+  var pattern = /\.docx?|.pptx?/;
+  return pattern.exec(body);
+  
 }
 
 /*****************************************
