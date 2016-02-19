@@ -40,8 +40,12 @@ function getDownloadLink(cookies) {
 
 }
 
-
-// Generates a download link (should work most of the time)
+/**
+ * Generates a download link (should work most of the time)
+ * The only time this method should be called is when the user is 
+ * viewing a Microsoft document. Microsoft documents don't have
+ * the same viewer on MyCourses as every other file that has one.
+ */
 function generateDownloadLink(cookies) {
   console.log("Attempting to generate download link");
   
