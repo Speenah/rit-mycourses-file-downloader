@@ -113,50 +113,6 @@ function determineExt() {
   
 }
 
-/*****************************************
- * TODO: Use regex instead of so many is...()
- *****************************************/
-
-// Returns true if viewing PDF
-function isPDF() {
-  var pdfs = document.getElementsByClassName("d2l-fileviewer-pdf");
-  if (pdfs.length == 1) {
-    return true;
-  }
-  return false;
-}
-
-// Returns true if viewing .docx file
-// I really couldn't think of a better way to do this
-function isDOCX() {
-  var body = document.getElementsByTagName("body")[0].innerHTML;
-  if (body.indexOf(".docx") != -1) {
-    return true;
-  }
-  return false;
-}
-
-// Returns true if viewing a .txt file
-function isTXT() {
-  var txt = document.getElementsByClassName("d2l-fileviewer-text");
-  if (txt.length == 1) {
-    if (txt[0].getAttribute("data-location").indexOf(".txt") != -1) {
-      return true;
-    } return false;
-  }
-  return false;
-}
-
-function isHTML() {
-  var html = document.getElementsByClassName("d2l-fileviewer-text");
-  if (html.length == 1) {
-    if (html[0].getAttribute("data-location").indexOf(".html") != -1) {
-      return true;
-    } return false;
-  }
-  return false;
-}
-
 // Returns file name if it is a no preview file
 // Returns null otherwise
 function isNoPreviewFile() {
