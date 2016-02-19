@@ -18,6 +18,7 @@ function getDownloadLink(cookies) {
       }
     }
     
+    // TODO: special case for non-preview files
     if (!fileviewer) {
       console.log("No direct link - must be be a Microsoft document");
       return generateDownloadLink(cookies);
@@ -72,6 +73,11 @@ function generateDownloadLink(cookies) {
 
 // Return name of file
 function getFileName() {
+  var no_preview = isNoPreviewFile();
+  if (no_preview) {
+    return isNoPreviewFile();
+  }
+  
   var nametag = document.getElementsByClassName("vui-heading-1")[0];
   
   var name = nametag.innerText;
@@ -81,11 +87,6 @@ function getFileName() {
     return name + ext;
   }
 
-  var no_preview = isNoPreviewFile();
-  if (no_preview) {
-    return isNoPreviewFile();
-  }
-  
   console.error("File name not found!");
 }
 
