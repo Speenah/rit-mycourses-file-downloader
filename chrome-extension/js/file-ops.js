@@ -6,28 +6,13 @@ function getDownloadLink(cookies) {
   var prefix = "https://mycourses.rit.edu";
   
   var viewer = document.getElementsByClassName("d2l-fileviewer")[0];
+  var fileviewer = null;
   var dl_anchor = $("a.vui-button.d2l-button[href]")[0];
-  var frame = $("iframe.d2l-iframe.d2l-iframe-offscreen.d2l-iframe-fit-user-content");
-  
-  console.log("Trying to get download link directly");
-  
-  switch(true) {
-    case (viewer !== undefined):
-      
-      break;
-    case (dl_anchor !== undefined):
-      
-      break;
-    case (frame !== undefined):
-      
-      break;
-    default:
-      return generateDownloadLink(cookies);
-  }
+  var frame = $("iframe.d2l-iframe.d2l-iframe-offscreen.d2l-iframe-fit-user-content")[0];
+  var path = "";
   
   if (viewer) {
     var divs = viewer.getElementsByTagName("div");
-    var fileviewer = null;
     
     for (var i = 0; i < divs.length; i++) {
       if (divs[i].hasAttribute("data-location")) {
@@ -35,40 +20,42 @@ function getDownloadLink(cookies) {
         break;
       }
     }
-    
-    var path = "";
-    // TODO: special case for non-preview files
-    if (!fileviewer) {
-      console.log("No fileviewer, checking for non-preview download button");
-      
-      var dl_anchor = $("a.vui-button.d2l-button[href]")[0];
-      if (!dl_anchor) {
-        // Microsoft doucment special case
-        console.log("No direct link - must be a Microsoft document");
-        return generateDownloadLink(cookies);
-      }
-      console.log("Found non-preview download button");
-      
-      path = dl_anchor.getAttribute("href");
-    } else {
-      path = fileviewer.getAttribute("data-location");
-    }
-    console.log("Found direct link");
-    
-    var path_part = path.split("?");
-    
-    var link = prefix + path_part[0] +
-               "?d2lSecureSessionVal=" + 
-               cookies["d2lSecureSessionVal"] + // SecureSession must be first
-               "&" + path_part[1]; // incluces d2lSessionVal and ou
-    
-    console.log("Direct link: " + link);
-    
-    return link;
   }
-  // .doc(x) and .ppt(x) files
-  console.log("No direct link - must be be a Microsoft document");
-  return generateDownloadLink(cookies);
+  
+  console.log("Trying to get download link directly");
+  
+  switch(true) {
+    case (fileviewer !== null):
+      console.log("Found direct link from viewer");
+      path = fileviewer.getAttribute("data-location");
+      break;
+      
+    case (dl_anchor !== undefined):
+      console.log("Found direct link from download button");
+      path = dl_anchor.getAttribute("href");
+      break;
+      
+    case (frame !== undefined):
+      console.log("Found direct link from iframe");
+      var frame_link = frame.getAttribute("src");
+      console.log("Link:  " + frame_link);
+      return frame_link;
+      
+    default:
+      return generateDownloadLink(cookies);
+  }
+
+  var path_part = path.split("?");
+
+  var link = prefix + path_part[0] +
+             "?d2lSecureSessionVal=" + 
+             cookies["d2lSecureSessionVal"] + // SecureSession must be first
+             "&" + path_part[1]; // incluces d2lSessionVal and ou
+
+  console.log("Direct link: " + link);
+    
+  return link;
+  
 }
 
 /**
