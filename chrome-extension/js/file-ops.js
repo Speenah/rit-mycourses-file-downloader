@@ -7,7 +7,7 @@ function getDownloadLink(cookies) {
   
   var viewer = document.getElementsByClassName("d2l-fileviewer")[0];
   var dl_anchor = $("a.vui-button.d2l-button[href]")[0];
-  var frame = '';
+  var frame = $("iframe.d2l-iframe.d2l-iframe-offscreen.d2l-iframe-fit-user-content");
   
   console.log("Trying to get download link directly");
   
