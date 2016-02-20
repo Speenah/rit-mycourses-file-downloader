@@ -6,8 +6,9 @@ function getDownloadLink(cookies) {
   var prefix = "https://mycourses.rit.edu";
   var viewer = document.getElementsByClassName("d2l-fileviewer")[0];
   
+  console.log("Trying to get download link directly");
+  
   if (viewer) {
-    console.log("Trying to get download link directly");
     var divs = viewer.getElementsByTagName("div");
     var fileviewer = null;
     
@@ -18,15 +19,20 @@ function getDownloadLink(cookies) {
       }
     }
     
+    var path = "";
     // TODO: special case for non-preview files
     if (!fileviewer) {
-      console.log("No direct link - must be be a Microsoft document");
-      return generateDownloadLink(cookies);
+      console.log("No fileviewer, checking for non-preview download button");
+      
+      var dl_anchor = $("a.vui-button.d2l-button[href]")[0];
+      console.log("Found non-preview download button");
+      
+      path = dl_anchor.getAttribute("href");
+    } else {
+      path = fileviewer.getAttribute("data-location");
     }
-    
     console.log("Found direct link");
     
-    var path = fileviewer.getAttribute("data-location");
     var path_part = path.split("?");
     
     var link = prefix + path_part[0] +
@@ -38,7 +44,9 @@ function getDownloadLink(cookies) {
     
     return link;
   }
-
+  // .doc(x) and .ppt(x) files
+  console.log("No direct link - must be be a Microsoft document");
+  return generateDownloadLink(cookies);
 }
 
 /**
