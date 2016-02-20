@@ -7,8 +7,18 @@ Dropbox.appKey = "8oj6dw6o6urk6wn";
 function addButtons(cookies) {
   var link = getDownloadLink(cookies);
   var filename = getFileName();
-  addDriveButton(cookies, link, filename);
-  addDropboxButton(cookies, link, filename);
+  $.ajax({
+    type: "GET",
+    url: link,
+    success: function(data, status) {
+      console.log("Download link is valid!");
+      addDriveButton(cookies, link, filename);
+      addDropboxButton(cookies, link, filename);
+    },
+    error: function(data, status) {
+      console.log("Download link is invalid, not adding buttons.");
+    }
+});
 }
 
 function addDropboxButton(cookies, link, filename) {
