@@ -25,6 +25,11 @@ function getDownloadLink(cookies) {
       console.log("No fileviewer, checking for non-preview download button");
       
       var dl_anchor = $("a.vui-button.d2l-button[href]")[0];
+      if (!dl_anchor) {
+        // Microsoft doucment special case
+        console.log("No direct link - must be a Microsoft document");
+        return generateDownloadLink(cookies);
+      }
       console.log("Found non-preview download button");
       
       path = dl_anchor.getAttribute("href");
