@@ -120,7 +120,7 @@ function determineExt() {
   // check for text docs
   var text = document.getElementsByClassName("d2l-fileviewer-text");
   if (text.length > 0) {
-    data = text.getAttribute("data-location");
+    data = text[0].getAttribute("data-location");
     var regex = /(\.\w{3,4})\?/;
     return regex.exec(data)[1];
   }
