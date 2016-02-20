@@ -128,19 +128,20 @@ function determineExt() {
 
   // check for PDF
   var pdfs = document.getElementsByClassName("d2l-fileviewer-pdf");
-  if (pdfs) return ".pdf";
+  if (pdfs.length > 0) return ".pdf";
   
   // check for text docs
   var text = document.getElementsByClassName("d2l-fileviewer-text");
-  if (text) {
+  if (text.length > 0) {
     data = text.getAttribute("data-location");
     var regex = /(\.\w{3,4})\?/;
     return regex.exec(data)[1];
   }
   
-  var body = document.getElementsByTagName("body")[0];
-  var pattern = /\.docx?|.pptx?/;
-  return pattern.exec(body);
+  var body = document.getElementsByTagName("body")[0].innerHTML;
+  var pattern = /(\.docx?)\\|(.pptx?)\\/;
+  var ext = pattern.exec(body);
+  return ext[1];
   
 }
 
