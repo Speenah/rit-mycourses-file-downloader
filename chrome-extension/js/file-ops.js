@@ -8,7 +8,7 @@ function getDownloadLink(cookies) {
   var viewer = document.getElementsByClassName("d2l-fileviewer")[0];
   var fileviewer = null;
   var dl_anchor = $("a.vui-button.d2l-button[href]")[0];
-  var frame = $("iframe.d2l-iframe.d2l-iframe-offscreen.d2l-iframe-fit-user-content")[0];
+  var frame = $("iframe")[0];
   var path = "";
   
   if (viewer) {
@@ -123,6 +123,14 @@ function determineExt() {
     data = text[0].getAttribute("data-location");
     var regex = /(\.\w{3,4})\?/;
     return regex.exec(data)[1];
+  }
+  
+  var iframe = $("iframe")[0];
+  if (iframe !== undefined) {
+    var frame_link = iframe.getAttribute("src");
+    var iext_regex = /(\.\w{3,4})$/;
+    var iext = iext_regex.exec(frame_link);
+    return iext;
   }
   
   var body = document.getElementsByTagName("body")[0].innerHTML;
