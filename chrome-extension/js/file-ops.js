@@ -4,9 +4,26 @@
 
 function getDownloadLink(cookies) {
   var prefix = "https://mycourses.rit.edu";
+  
   var viewer = document.getElementsByClassName("d2l-fileviewer")[0];
+  var dl_anchor = $("a.vui-button.d2l-button[href]")[0];
+  var frame = '';
   
   console.log("Trying to get download link directly");
+  
+  switch(true) {
+    case (viewer !== undefined):
+      
+      break;
+    case (dl_anchor !== undefined):
+      
+      break;
+    case (frame !== undefined):
+      
+      break;
+    default:
+      return generateDownloadLink(cookies);
+  }
   
   if (viewer) {
     var divs = viewer.getElementsByTagName("div");
