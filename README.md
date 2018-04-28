@@ -1,3 +1,5 @@
+I have no plans to continue this project since I no longer use Google Drive or Dropbox
+
 # RIT MyCourses File Saver
 An extension for Google Chrome that adds buttons to save files directly to Google Drive or Dropbox
 
